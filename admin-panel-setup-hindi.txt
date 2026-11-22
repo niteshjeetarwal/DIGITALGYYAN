@@ -1,0 +1,91 @@
+DIGITALGYYAN ADMIN PANEL — SETUP GUIDE (Hindi/Hinglish)
+=====================================================
+
+IMPORTANT
+- Is ZIP mein admin panel ka frontend aur database/security setup diya gaya hai.
+- Yeh abhi live website par automatically install nahi hua. Pehle neeche ka one-time setup karke poora folder Netlify par deploy karna hoga.
+- Admin password kisi se share na karein. Website code mein password ya Supabase service_role/secret key kabhi na daalein.
+
+FILES
+- admin.html: admin login, upload, publish/unpublish, delete dashboard
+- resources.html: students ke liye published resources library
+- admin-config.js: Supabase Project URL + public publishable/anon key yahan bharni hai
+- SUPABASE-SETUP.sql: tables, allowlist, storage bucket aur security policies
+
+STEP 1 — SUPABASE PROJECT
+1. Supabase par apna account/project banayein (official website: https://supabase.com/).
+2. Project ke Connect / API settings se Project URL aur publishable key (ya legacy anon public key) copy karein.
+3. SUPABASE-SETUP.sql ko Supabase Dashboard > SQL Editor mein kholein aur poora script run karein.
+
+STEP 2 — CREATE ADMIN LOGIN
+1. Supabase Dashboard > Authentication > Users > Add user se apna admin email/password user banayein.
+2. Us user ka UUID copy karein.
+3. SQL Editor mein alag se yeh command chalayein, UUID ko apne actual UUID se replace karein:
+   insert into public.dg_admins (user_id) values ('PASTE_REAL_USER_UUID');
+4. Public sign-ups enable karne ki zarurat nahi. Admin users sirf dashboard se create karein.
+5. Password strong rakhein; public/shared device par login ke baad logout karein.
+
+STEP 3 — CONFIGURE WEBSITE
+1. admin-config.js ko text editor mein kholein.
+2. YOUR_SUPABASE_PROJECT_URL ko actual Project URL se replace karein.
+3. YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY ko actual public publishable/anon key se replace karein.
+4. Sirf public publishable/anon key use karein. service_role, secret key, database password ya admin password kabhi yahan na likhein.
+
+STEP 4 — DEPLOY ON NETLIFY
+1. Poora project folder rakhein; files ko alag-alag deploy na karein.
+2. Updated project ko ZIP karein ya Netlify Drop/deployment workflow mein project folder upload karein.
+3. Netlify deployment complete hone ke baad /admin.html kholein. Example: https://YOUR-SITE.netlify.app/admin.html
+4. Admin email/password se login karein.
+5. PDF/DOCX/PPTX/image/TXT choose karein, section + subject + category select karein, Upload & Publish press karein.
+6. Published file students ko /resources.html par dikhegi. Main website par bhi “Study Resources” link se khol sakte hain.
+
+STEP 5 — TEST
+- Ek chhoti non-sensitive test PDF upload karke publish karein.
+- Incognito/private browser mein /resources.html khol kar confirm karein ke file dikhti aur open hoti hai.
+- Incognito mein /admin.html par upload/login access na ho to yeh expected hai.
+- Agar error aaye, exact error text bhej dein; main troubleshoot karunga.
+
+SECURITY NOTES
+- Public bucket ka matlab published file URL jiske paas ho woh file dekh/download kar sakta hai. Isliye sirf woh material publish karein jo public students ke liye hai.
+- Supabase RLS policies database changes ko admin allowlist tak restrict karti hain; Storage upload/delete bhi admin-only hai.
+- Public anon/publishable key browser mein nazar aa sakti hai; security RLS se aati hai. Secret/service_role key browser mein kabhi na daalein.
+- Admin panel + SQL mein configured ceiling 64 GiB (64 GB class) hai aur large files ke liye resumable TUS upload use hota hai. Lekin yeh Supabase Free plan ki 50 MB per-file limit ko override nahi karta. 50 MB se bade files tabhi upload honge jab aapka Supabase plan/project settings us size ko allow karein. 64 GB files ke liye storage cost, bandwidth/egress, browser/device reliability aur long upload time ko pehle test karein. Video classes ke liye YouTube ya dedicated video hosting zyada practical hai.
+- Yeh setup Supabase account, credentials, SQL run, and Netlify redeploy ki zarurat rakhta hai. ChatGPT aapke accounts mein login ya live deployment khud complete nahi kar sakta.
+
+
+PASSWORD RECOVERY — UPDATED FLOW
+- Admin login page par email bhar kar "Send password reset email" dabayein.
+- Email ke recovery link par click karne ke baad URL /admin.html?recovery=1 khulna chahiye.
+- Is page par "Set a new admin password" form dikhega. Naya password aur confirmation bhar kar Update password dabayein.
+- Agar link phir bhi homepage par jata hai, Supabase Dashboard > Authentication > URL Configuration mein Site URL ko https://digitalgyyan.netlify.app set karein aur Redirect URLs mein https://digitalgyyan.netlify.app/admin.html?recovery=1 add karein. Save karke naya reset email bhejein; purana link dobara use na karein.
+- Recovery ke liye wahi admin email use karein jo Supabase Authentication > Users mein maujood hai.
+- Password update hone ke baad /admin.html par naye password se login karein.
+
+
+DIGITALGYYAN — NETLIFY ENVIRONMENT VARIABLES SETUP
+
+This project now generates admin-config.js during the Netlify build.
+You do NOT need to type the Supabase URL/key into HTML or JavaScript manually.
+
+1) Open Netlify Dashboard > your DIGITALGYYAN site.
+2) Go to Site configuration (or Project configuration) > Environment variables.
+3) Add these two variables:
+   SUPABASE_URL = https://YOUR_PROJECT_REF.supabase.co
+   SUPABASE_ANON_KEY = your Supabase PUBLIC publishable key (or legacy anon public key)
+4) Save the variables.
+5) Trigger a new deploy: Deploys > Trigger deploy > Deploy site.
+   The netlify.toml file runs "npm run build". The build script creates admin-config.js.
+6) After deployment, test /admin.html and /resources.html.
+
+IMPORTANT SECURITY
+- The publishable/anon key is designed to be used in browser apps. It will be visible in the delivered website JavaScript after build. This is expected.
+- Do NOT put Supabase service_role, secret key, database password, or admin password in Netlify variables used by this frontend.
+- Netlify environment variables protect values from being committed to GitHub, but any value injected into browser code is public at runtime.
+- Real protection comes from Supabase Row Level Security (RLS), the dg_admins allowlist, and Storage policies. Keep those policies enabled.
+- The separately uploaded schema.sql uses policies with USING (true) / WITH CHECK (true) for anonymous INSERT/UPDATE. Those policies are unsafe for a public site and should NOT be run as-is. Use the project's supabase-setup.sql and cms-migration.sql, which use the dg_admins allowlist, after reviewing them for your project.
+- If any service_role/secret key was ever committed or exposed, rotate it in Supabase immediately.
+
+LOCAL BUILD (optional)
+Set SUPABASE_URL and SUPABASE_ANON_KEY in your local shell or a private .env loader, then run:
+  npm run build
+Do not commit .env files or generated admin-config.js.

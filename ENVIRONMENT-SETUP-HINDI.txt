@@ -1,0 +1,39 @@
+DIGITALGYYAN — NETLIFY ENVIRONMENT VARIABLES SETUP
+
+This project now generates admin-config.js during the Netlify build.
+You do NOT need to type the Supabase URL/key into HTML or JavaScript manually.
+
+1) Open Netlify Dashboard > your DIGITALGYYAN site.
+2) Go to Site configuration (or Project configuration) > Environment variables.
+3) Add these two variables:
+   SUPABASE_URL = https://YOUR_PROJECT_REF.supabase.co
+   SUPABASE_ANON_KEY = your Supabase PUBLIC publishable key (or legacy anon public key)
+4) Save the variables.
+5) Trigger a new deploy: Deploys > Trigger deploy > Deploy site.
+   The netlify.toml file runs "npm run build". The build script creates admin-config.js.
+6) After deployment, test /admin.html and /resources.html.
+
+IMPORTANT SECURITY
+- The publishable/anon key is designed to be used in browser apps. It will be visible in the delivered website JavaScript after build. This is expected.
+- Do NOT put Supabase service_role, secret key, database password, or admin password in Netlify variables used by this frontend.
+- Netlify environment variables protect values from being committed to GitHub, but any value injected into browser code is public at runtime.
+- Real protection comes from Supabase Row Level Security (RLS), the dg_admins allowlist, and Storage policies. Keep those policies enabled.
+- The separately uploaded schema.sql uses policies with USING (true) / WITH CHECK (true) for anonymous INSERT/UPDATE. Those policies are unsafe for a public site and should NOT be run as-is. Use the project's supabase-setup.sql and cms-migration.sql, which use the dg_admins allowlist, after reviewing them for your project.
+- If any service_role/secret key was ever committed or exposed, rotate it in Supabase immediately.
+
+LOCAL BUILD (optional)
+Set SUPABASE_URL and SUPABASE_ANON_KEY in your local shell or a private .env loader, then run:
+  npm run build
+Do not commit .env files or generated admin-config.js.
+
+
+NETLIFY BUILD ERROR FIX (UPDATED)
+- Is version mein Supabase environment variables missing hone par static website build fail nahi hoga.
+- Lekin jab tak dono variables set nahi honge, Admin Panel ka Supabase login/CMS kaam nahi karega.
+- Netlify > Site configuration > Environment variables mein exact names use karein:
+  SUPABASE_URL
+  SUPABASE_ANON_KEY
+- Values Supabase Dashboard > Project Settings > API se copy karein. SUPABASE_URL = Project URL; SUPABASE_ANON_KEY = Publishable key (sb_publishable_...) ya legacy anon public key.
+- Service role/secret key kabhi bhi yahan ya kisi browser-side variable mein na daalein.
+- Variables add/change karne ke baad Netlify > Deploys > Trigger deploy > Clear cache and deploy site karein.
+- Agar build phir fail ho, Netlify deploy log mein 'npm run build' se pehle wali pehli ERROR line share karein.

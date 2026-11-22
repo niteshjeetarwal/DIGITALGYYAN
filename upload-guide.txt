@@ -1,0 +1,86 @@
+DIGITALGYYAN — MASTER UPLOAD GUIDE
+
+READ FIRST
+- index.html is the main homepage.
+- catalog.json lists existing Visual Simulation and Assessment HTML tools.
+- Do not delete existing project folders.
+- When you upload a new version to Netlify, deploy the complete project folder to the SAME site. Do not delete the site first.
+- Static hosting does not automatically show newly copied files. New HTML tools must be added to catalog.json; PDFs need a visible link on the appropriate resource page/catalog. You can send me the files and I can update these listings.
+
+A) CLASS 6–12
+Base: Study Resources/Class N/
+Each class has these folders:
+Notes/
+Model Papers/
+Question Papers/
+Short Notes/
+Tricks & Shortcuts/
+Important Facts/
+Previous Year Questions/
+MCQs & Practice/
+Worksheets/
+Syllabus & Study Plan/
+Revision Material/
+Answer Keys & Solutions/
+
+Subject-wise folders also exist under each class (e.g. Class 10/Mathematics/Notes/). Put files in the class+subject folder when appropriate. If unsure, use the class-level folder.
+
+B) HIGHER MATHEMATICS — CSIR NET
+Base: Higher Mathematics - CSIR NET/<Subject>/
+Subjects include Linear Algebra, Real Analysis, Complex Analysis, Abstract Algebra, ODE, PDE, Topology, Functional Analysis, Numerical Analysis, Calculus, Measure Theory & Integration, Linear Programming, Calculus of Variations, Integral Equations, Probability & Statistics, Mechanics, Discrete Mathematics, Graph Theory, Mathematical Methods, and CSIR NET PYQs & Full-Length Tests.
+Each subject has:
+Detailed Notes/
+Short Notes/
+Model Papers & Mock Tests/
+Previous Year Questions/
+Tricks & Shortcuts/
+Important Facts & Formulae/
+MCQs & Practice Sets/
+Topic-wise Questions/
+Revision Sheets/
+Mind Maps & Flowcharts/
+Solved Papers & Answer Keys/
+Syllabus & Study Plan/
+
+C) UPSC
+Base: UPSC/<Section>/
+Sections include Prelims, Mains, CSAT, Essay Writing, Current Affairs, GS I, GS II, GS III, GS IV, Optional Subjects, Interview, PYQs, Answer Writing, Full-Length Mock Tests.
+Each section has detailed notes, short notes, model/mock papers, PYQs, tricks/mnemonics, important facts, current affairs PDFs, MCQs, answer writing, revision sheets, mind maps, solved papers and syllabus/study plan folders.
+
+D) PCS
+Base: PCS/<Section>/
+Sections include Prelims, Mains, CSAT & Aptitude, State GK & State Special, History & Culture, Geography, Polity, Economy, Science & Technology, Environment, Current Affairs, Ethics & Essay, Optional Subjects, PYQs, Interview, Mock Tests.
+Each section has notes, short notes, model/mock papers, PYQs, tricks, important facts, current affairs, MCQs, answer writing, revision, mind maps, solved papers and syllabus folders.
+
+E) VISUAL SIMULATIONS
+Use the existing original simulation folders for existing tools. Future slots are available under:
+Visual Simulation Lab/Phase 1 - Mathematics Foundation 001-020/
+Visual Simulation Lab/Phase 2 - Science Foundation 021-040/
+Visual Simulation Lab/Phase 3 - Senior Mathematics 041-060/
+Visual Simulation Lab/Phase 4 - Senior Physics 061-080/
+Visual Simulation Lab/Phase 5 - Chemistry & Advanced Labs 081-100/
+Keep the fixed 001–100 numbering. Include each tool's HTML, CSS, JS, images and other required files together.
+
+F) FILE NAMING RECOMMENDATION
+Use clear names, e.g.:
+Class10_Mathematics_Trigonometry_Notes.pdf
+Class10_Mathematics_ModelPaper_2026.pdf
+CSIRNET_LinearAlgebra_ShortNotes.pdf
+UPSC_Prelims_IndianPolity_PYQ.pdf
+PCS_StateGK_ImportantFacts.pdf
+VisualSimulation_001_3DGeometryExplorer.html
+
+G) PUBLISHING
+1. Add files to the correct folder.
+2. Update catalog.json or the resource page so the new file has a visible link.
+3. Upload/deploy the complete updated project folder to the same Netlify site.
+4. Verify the new link on the live website.
+No need to delete the existing website first.
+
+NOTE: This ZIP creates folder structures and placeholder .keep.txt files; it does not invent or include future PDFs.
+
+
+ADMIN UPLOAD OPTION
+See ADMIN-PANEL-SETUP-HINDI.txt. After the one-time Supabase setup and Netlify redeploy, use admin.html to upload files and resources.html to browse published resources.
+
+Build note: missing Supabase env vars no longer stop static deployment, but admin/backend functions remain unavailable until SUPABASE_URL and SUPABASE_ANON_KEY are configured in Netlify.

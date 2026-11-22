@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10243a"><title>DIGITALGYYAN | Learning Hub</title>
+<style>
+:root{--navy:#10243a;--blue:#1d5ed8;--bg:#f4f7fb;--ink:#14243a;--muted:#64758a;--line:#dfe7f0}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+.hero{background:radial-gradient(circle at 85% 10%,#285b8a 0,transparent 32%),linear-gradient(135deg,#10243a,#1b456c);color:white;padding:25px 18px 27px}.wrap,main{max-width:1180px;margin:auto}.brand{display:flex;align-items:center;gap:12px}.logo{width:48px;height:48px;border-radius:15px;background:white;color:#10243a;display:grid;place-items:center;font-weight:950;font-size:19px}.brand h1{font-size:clamp(25px,4vw,38px);margin:0}.tagline{font-size:13px;color:#c9dced;margin-top:3px}.hero h2{font-size:clamp(22px,4vw,32px);line-height:1.2;margin:20px 0 7px}.hero p{max-width:760px;color:#d8e5f1;line-height:1.6;margin:0}
+main{padding:20px 18px 42px}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:17px}.search{flex:1;min-width:210px;border:1px solid var(--line);border-radius:12px;padding:13px 15px;font-size:15px;background:white}.link{border:1px solid var(--line);border-radius:12px;background:white;padding:12px 14px;font-weight:750;text-decoration:none;color:var(--navy);display:inline-flex;align-items:center;gap:7px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.card{background:white;border:1px solid var(--line);border-radius:16px;padding:17px;display:flex;flex-direction:column;min-height:155px}.ico{width:43px;height:43px;border-radius:13px;background:#eaf1ff;display:grid;place-items:center;font-size:22px}.card h3{font-size:17px;margin:12px 0 6px;line-height:1.35}.card p{font-size:13px;color:var(--muted);margin:0 0 14px;line-height:1.5}.open{margin-top:auto;display:block;text-decoration:none;background:#edf4ff;color:#174eaa;border-radius:9px;padding:10px 11px;font-weight:750;font-size:13px}.note{color:var(--muted);font-size:12px;line-height:1.5;margin-top:16px}.footer{text-align:center;padding:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){.grid{grid-template-columns:1fr}.toolbar>*{width:100%}}
+</style></head><body>
+<header class="hero"><div class="wrap"><div class="brand"><div class="logo">DG</div><div><h1>DIGITALGYYAN</h1><div class="tagline">Learn Smart. Grow Smart.</div></div></div>
+<h2>Learn Smart. Grow Smart.</h2><p>School learning, Higher Mathematics, competitive exam preparation, digital resources and interactive tools — all in one place.</p></div></header>
+<main>
+<div class="toolbar"><input id="search" class="search" type="search" placeholder="Search sections…"><a class="link" href="resources.html">📚 Study Resources</a><a class="link" href="admin.html">🔐 Admin Panel</a></div>
+<div id="sections" class="grid">
+<article class="card"><div class="ico">📘</div><h3>Class 6–12</h3><p>Notes, model papers, question papers, worksheets, short notes and practice.</p><a class="open" href="#classes">Explore classes ↓</a></article>
+<article class="card"><div class="ico">📐</div><h3>Higher Mathematics</h3><p>CSIR NET and GATE Mathematics subjects, notes, PYQs and practice.</p><a class="open" href="#higher-math">Explore Mathematics ↓</a></article>
+<article class="card"><div class="ico">🏛️</div><h3>UPSC Preparation</h3><p>Prelims, Mains, GS, CSAT, essay, current affairs and more.</p><a class="open" href="#upsc">Explore UPSC ↓</a></article>
+<article class="card"><div class="ico">🗺️</div><h3>PCS Preparation</h3><p>State GK, Prelims, Mains, current affairs, PYQs and mock tests.</p><a class="open" href="#pcs">Explore PCS ↓</a></article>
+<article class="card"><div class="ico">🧠</div><h3>AI & Technology</h3><p>Guides, useful AI tools, digital skills and technology updates.</p><a class="open" href="resources.html">Browse resources ↗</a></article>
+<article class="card"><div class="ico">📝</div><h3>Notes & Model Papers</h3><p>Open the study resources library to find published learning materials.</p><a class="open" href="resources.html">Open library ↗</a></article>
+<article class="card"><div class="ico">🧪</div><h3>Visual Simulations</h3><p>Interactive science and mathematics tools, listed on a separate page.</p><a class="open" href="simulations.html">Open Simulation Lab ↗</a></article>
+<article class="card"><div class="ico">📝</div><h3>Assessment & Practice</h3><p>Interactive quizzes and practice tools available in this project.</p><a class="open" href="assessments.html">Open assessments ↗</a></article>
+</div>
+<section id="classes" style="margin-top:28px"><h2>Class 6–12 Study Resources</h2><div class="grid" id="classGrid"></div></section>
+<section id="higher-math" style="margin-top:28px"><h2>Higher Mathematics — CSIR NET</h2><div class="grid" id="csirGrid"></div></section>
+<section id="upsc" style="margin-top:28px"><h2>UPSC Preparation</h2><div class="grid" id="upscGrid"></div></section>
+<section id="pcs" style="margin-top:28px"><h2>PCS Preparation</h2><div class="grid" id="pcsGrid"></div></section>
+<p class="note">For new PDFs, DOCX files and images, use the <a href="admin.html">Admin Panel</a>. Published resources appear in <a href="resources.html">Study Resources</a>.</p>
+</main><footer class="footer">DIGITALGYYAN · Learn Smart. Grow Smart.</footer>
+<script>
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function resourceCard(title,desc,href,icon="📚"){return `<article class="card"><div class="ico">${icon}</div><h3>${esc(title)}</h3><p>${esc(desc)}</p><a class="open" href="${encodeURI(href)}">Open section ↗</a></article>`}
+document.getElementById("classGrid").innerHTML=Array.from({length:7},(_,i)=>i+6).map(c=>resourceCard("Class "+c,"Notes · Model Papers · Question Papers · Short Notes","resources.html","📘")).join("");
+const csir=["Linear Algebra","Real Analysis","Complex Analysis","Abstract Algebra","ODE","PDE","Topology","Functional Analysis","Numerical Analysis","Calculus","Measure Theory & Integration","Linear Programming","Calculus of Variations","Integral Equations","Probability & Statistics","Mechanics","Discrete Mathematics","Graph Theory","Mathematical Methods","CSIR NET PYQs & Full-Length Tests"];
+document.getElementById("csirGrid").innerHTML=csir.map(s=>resourceCard(s,"Notes · Short Notes · PYQs · Tricks · Formulae · Mock Tests","Higher Mathematics - CSIR NET/"+s+"/","📐")).join("");
+const upsc=["Prelims","Mains","CSAT","Essay Writing","Current Affairs","General Studies I - History, Culture, Society, Geography","General Studies II - Polity, Governance, Constitution, IR","General Studies III - Economy, Science, Environment, Security","General Studies IV - Ethics, Integrity, Aptitude","Optional Subjects","Interview & Personality Test","Previous Year Questions","Answer Writing Practice","Full-Length Mock Tests"];
+document.getElementById("upscGrid").innerHTML=upsc.map(s=>resourceCard(s,"Notes · Short Notes · Important Facts · PYQs · Model Tests","UPSC/"+s+"/","🏛️")).join("");
+const pcs=["Prelims","Mains","CSAT & Aptitude","State GK & State Special","History & Culture","Geography","Indian Polity & Constitution","Economy","Science & Technology","Environment & Ecology","Current Affairs","Ethics & Essay","Optional Subjects","Previous Year Questions","Interview & Personality Test","Mock Tests"];
+document.getElementById("pcsGrid").innerHTML=pcs.map(s=>resourceCard(s,"Notes · Short Notes · Important Facts · PYQs · Model Tests","PCS/"+s+"/","🗺️")).join("");
+document.getElementById("search").addEventListener("input",e=>{let q=e.target.value.trim().toLowerCase();document.querySelectorAll("#sections .card").forEach(c=>c.style.display=c.innerText.toLowerCase().includes(q)?"flex":"none");});
+</script></body></html>

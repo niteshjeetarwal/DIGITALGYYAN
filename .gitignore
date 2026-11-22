@@ -1,0 +1,9 @@
+# Generated config contains the public Supabase client settings
+# It is created during Netlify builds from environment variables.
+admin-config.js
+
+# Local tooling
+node_modules/
+.env
+.env.*
+!.env.example
